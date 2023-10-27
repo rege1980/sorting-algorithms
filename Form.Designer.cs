@@ -40,7 +40,6 @@
             randCheck = new CheckBox();
             randCountUD = new NumericUpDown();
             genBut = new Button();
-            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             timeLab = new Label();
             ((System.ComponentModel.ISupportInitialize)randCountUD).BeginInit();
             SuspendLayout();
@@ -70,7 +69,6 @@
             outputBox.Name = "outputBox";
             outputBox.Size = new Size(273, 23);
             outputBox.TabIndex = 7;
-            outputBox.TextChanged += outputBox_TextChanged;
             // 
             // selSortBut
             // 
@@ -131,7 +129,6 @@
             label2.Size = new Size(54, 15);
             label2.TabIndex = 13;
             label2.Text = "OUTPUT:";
-            label2.Click += label2_Click;
             // 
             // randCheck
             // 
@@ -178,9 +175,8 @@
             timeLab.TabIndex = 17;
             timeLab.Text = "Sorting took";
             timeLab.Visible = false;
-            timeLab.Click += timeLab_Click;
             // 
-            // Form1
+            // Form
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -198,8 +194,8 @@
             Controls.Add(outputBox);
             Controls.Add(inputBox);
             Controls.Add(insertSortBut);
-            Name = "Form1";
-            Text = "Sorting";
+            Name = "Form";
+            Text = "Sorting Algorithms";
             ((System.ComponentModel.ISupportInitialize)randCountUD).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -221,7 +217,6 @@
         private System.Windows.Forms.Timer timer1;
         private NumericUpDown randCountUD;
         private Button genBut;
-        private System.ComponentModel.BackgroundWorker backgroundWorker1;
         // ---------------------- //
         private int[] randomArray = new int[0];
         private Label timeLab;

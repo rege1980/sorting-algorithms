@@ -262,19 +262,6 @@ namespace WinFormsApp3
             else if (time.TotalSeconds < 120) return ((int)time.TotalSeconds) + " seconds.";
             else return ((int)time.TotalMinutes) + " minutes.";
         }
-
-        private void outputBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void timeLab_Click(object sender, EventArgs e)
-        {
-        }
     }
 
 

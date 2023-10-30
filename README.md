@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/rege1980/sorting_algorithms">
-    <img src="images/logo.svg" alt="Logo" width="80" height="80">
+    <img src="logo.svg" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">Sorting algorithms</h3>

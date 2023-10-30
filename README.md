@@ -24,10 +24,15 @@
 
 ## Usage
  · Download latest [release](https://github.com/rege1980/sorting-algorithms/releases)
+ <br />
  · Run `.exe` file (**Windows only**)
+ <br />
  · Enter your numbers into the INPUT: field separated by a **blank space**.
+ <br />
  · Click the button corresponding to the algorithm the program should use to sort your numbers.
+ <br />
  · The sorted numbers in ascending order will appear in the OUTPUT: field. 
+ <br />
  · The time needed to sort them will be displayed at the bottom.
  
 ## Goals

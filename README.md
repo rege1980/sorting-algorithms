@@ -61,5 +61,4 @@ Don't forget to give the project a star! Thanks again!
 
 ## License
 
-Distributed under the MIT License. See <aLICENSE.txt](https://github.com/rege1980/sorting-algorithms/blob/main/LICENSE.txt) for more information.
-<a href="https://github.com/rege1980/sorting-algorithms/blob/main/LICENSE.txt">Request Feature</a>
+Distributed under the MIT License. See <a href="https://github.com/rege1980/sorting-algorithms/blob/main/LICENSE.txt">License.txt</a> for more information.

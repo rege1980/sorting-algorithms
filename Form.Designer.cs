@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             insertSortBut = new Button();
             inputBox = new TextBox();
             outputBox = new TextBox();
@@ -41,18 +42,20 @@
             randCountUD = new NumericUpDown();
             genBut = new Button();
             timeLab = new Label();
+            randSrc = new BindingSource(components);
             ((System.ComponentModel.ISupportInitialize)randCountUD).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)randSrc).BeginInit();
             SuspendLayout();
             // 
             // insertSortBut
             // 
-            insertSortBut.Enabled = false;
+            insertSortBut.Enabled = true;
             insertSortBut.FlatStyle = FlatStyle.System;
             insertSortBut.Location = new Point(320, 113);
             insertSortBut.Name = "insertSortBut";
             insertSortBut.Size = new Size(87, 29);
             insertSortBut.TabIndex = 5;
-            insertSortBut.Text = "Insert sort";
+            insertSortBut.Text = "Insertion sort";
             insertSortBut.UseVisualStyleBackColor = true;
             insertSortBut.Click += insertSortBut_Click;
             // 
@@ -197,6 +200,7 @@
             Name = "Form";
             Text = "Sorting Algorithms";
             ((System.ComponentModel.ISupportInitialize)randCountUD).EndInit();
+            ((System.ComponentModel.ISupportInitialize)randSrc).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -214,12 +218,9 @@
         private Label label1;
         private Label label2;
         private CheckBox randCheck;
-        private System.Windows.Forms.Timer timer1;
         private NumericUpDown randCountUD;
         private Button genBut;
-        // ---------------------- //
-        private int[] randomArray = new int[0];
         private Label timeLab;
-        // ---------------------- //
+        private BindingSource randSrc;
     }
 }

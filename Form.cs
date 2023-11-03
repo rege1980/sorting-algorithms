@@ -10,106 +10,13 @@ namespace WinFormsApp3
         {
             InitializeComponent();
         }
-
-        // bubble sort button //
-        private void bubSortBut_Click(object sender, EventArgs e)
+        
+        // 0 - bubble sort //
+        private void bubSortBut_Click(object sender, EventArgs e)   
         {
-            int[] tab = new int[randomArray.Length];
-
-            DateTime start;
-            DateTime end;
-
-            if (!randCheck.Checked)
-                tab = getInput();
-            else
-                randomArray.CopyTo(tab, 0);
-
-            start = DateTime.Now;
-
-            tab = bubbleSort(tab);
-
-            if (tab.Length == 0) return;
-
-            end = DateTime.Now;
-
-            if (!randCheck.Checked)
-                showOutput(tab);
-
-            timeLab.Text = "Sorting took " + formatTime(start, end);
-            timeLab.Visible = true;
+            sorting(0);
         }
-
-        // selection sort button //
-        private void selSortBut_Click(object sender, EventArgs e)
-        {
-            int[] tab = new int[randomArray.Length];
-
-            DateTime start;
-            DateTime end;
-
-            if (!randCheck.Checked)
-                tab = getInput();
-            else
-                randomArray.CopyTo(tab, 0);
-
-            start = DateTime.Now;
-
-            tab = selectionSort(tab);
-
-            if (tab.Length == 0) return;
-
-            end = DateTime.Now;
-
-            if (!randCheck.Checked)
-                showOutput(tab);
-
-            timeLab.Text = "Sorting took " + formatTime(start, end);
-            timeLab.Visible = true;
-        }
-
-        // insert sort button //
-        private void insertSortBut_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // quick sort button //
-        private void qkSortBut_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // merge sort button //
-        private void mrgSortBut_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        // generate button //
-        private void genBut_Click(object sender, EventArgs e)
-        {
-            randomArray = new int[(int)randCountUD.Value];
-
-            Random rand = new Random();
-
-            genBut.UseWaitCursor = true;
-
-            for (int i = 0; i < randomArray.Length; i++)
-            {
-                randomArray[i] = rand.Next(1, 99);
-            }
-
-            genBut.UseWaitCursor = false;
-
-            bubSortBut.Enabled = true;
-            selSortBut.Enabled = true;
-            //insertSortBut.Enabled = true;
-            //mrgSortBut.Enabled = true;
-            //qkSortBut.Enabled = true;
-        }
-
-        // bubble sort //
-        int[] bubbleSort(int[] tab)
+        private int[] bubbleSort(int[] tab)                                 
         {
             bool cbz = false;
             do
@@ -128,8 +35,11 @@ namespace WinFormsApp3
             } while (cbz);
             return tab;
         }
-
-        // selection sort //
+        // 1 - selection sort //
+        private void selSortBut_Click(object sender, EventArgs e)       
+        {
+            sorting(1);
+        }
         int[] selectionSort(int[] tab)
         {
             bool cbz;
@@ -153,39 +63,170 @@ namespace WinFormsApp3
             return tab;
         }
 
-        // get user input, convert it to int array and return //
-        int[] getInput()
+        // 2 - insertion sort //
+        private void insertSortBut_Click(object sender, EventArgs e)
         {
-            String str = inputBox.Text;
-            try
+            sorting(2);
+        }
+        int[] insertionSort(int[] tab)
+        {
+            bool cbz;
+            do
             {
-                str.Trim().Split(' ');
+                cbz = false;
+                for (int i = 1; i < tab.Length; i++)
+                {
+                    if (tab[i-1] > tab[i])
+                    {
+                        int temp = tab[i];
+                        tab[i] = tab[i-1];
+                        tab[i-1] = temp;
+                        cbz = true;
+                    }
+                }
+            } while (cbz);
+            return tab;
+        }
+
+        // 3 - merge sort //
+        private void mrgSortBut_Click(object sender, EventArgs e)
+        {
+            sorting(3);
+        }
+        int[] mergeSort(int[] tab)
+        {
+            return tab;
+        }
+
+        // 4 - quick sort //
+        private void qkSortBut_Click(object sender, EventArgs e)
+        {
+            sorting(4);
+        }
+        int[] quickSort(int[] tab)
+        {
+            return tab;
+        }
+
+
+        // func called after any sort button click
+        // n=0 - bubble
+        // n=1 - selection
+        // n=2 - insertion
+        // n=3 - merge
+        // n=4 - quick
+        private void sorting(int n)
+        {
+            int[] tab = new int[randSrc.Count];
+
+            DateTime start;
+            DateTime end;
+
+            tab = getInput();
+
+            start = DateTime.Now;
+
+            switch (n)
+            {
+                case 0:
+                    tab = bubbleSort(tab);
+                    break;
+                case 1:
+                    tab = selectionSort(tab);
+                    break;
+                case 2:
+                    tab = insertionSort(tab);
+                    break;
+                case 3:
+                    //tab = mergeSort(tab);
+                    break;
+                case 4:
+                    //tab = quickSort(tab);
+                    break;
+                default:
+                    Array.Sort(tab);
+                    break;
             }
-            catch
+            if (tab.Length == 0) return;
+
+            end = DateTime.Now;
+
+            if (!randCheck.Checked)
+                showOutput(tab);
+
+            timeLab.Text = "Sorting took " + formatTime(start, end);
+            timeLab.Visible = true;
+        }
+
+        // generate button //
+        private void genBut_Click(object sender, EventArgs e)
+        {
+            randSrc.Clear();
+
+            Random rand = new Random();
+
+            genBut.UseWaitCursor = true;
+
+            for (int i = 0; i < randCountUD.Value; i++)
             {
-                SystemSounds.Beep.Play();
-                MessageBox.Show("Wrong formatting! Try: 9 8 7 6 5");
-                return new int[0];
+                randSrc.Add(rand.Next(1, 99));
             }
 
-            String[] tab = str.Trim().Split(' ');
-            int[] ret = new int[tab.Length];
-            for (int i = 0; i < tab.Length; i++)
+            genBut.UseWaitCursor = false;
+
+            bubSortBut.Enabled = true;
+            selSortBut.Enabled = true;
+            insertSortBut.Enabled = true;
+            //mrgSortBut.Enabled = true;
+            //qkSortBut.Enabled = true;
+            SystemSounds.Beep.Play();
+            //MessageBox.Show("Done!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+        }
+
+
+        // get user input or random array and return //
+        int[] getInput()
+        {
+            if (randCheck.Checked)  // random numbers
             {
+                int[] ret = new int[randSrc.Count];
+                randSrc.CopyTo(ret, 0);
+                return ret;
+            }
+            else                    // user input
+            {
+                String str = inputBox.Text;
                 try
                 {
-                    Convert.ToInt32(tab[i]);
+                    str.Trim().Split(' ');
                 }
                 catch
                 {
                     SystemSounds.Beep.Play();
-                    MessageBox.Show("Something is wrong! Try: 9 8 7 6 5");
+                    MessageBox.Show("Wrong formatting! Try: 9 8 7 6 5");
                     return new int[0];
                 }
-                ret[i] = Convert.ToInt32(tab[i]);
+
+                String[] tab = str.Trim().Split(' ');
+                int[] ret = new int[tab.Length];
+                for (int i = 0; i < tab.Length; i++)
+                {
+                    try
+                    {
+                        Convert.ToInt32(tab[i]);
+                    }
+                    catch
+                    {
+                        SystemSounds.Beep.Play();
+                        MessageBox.Show("Something is wrong! Try: 9 8 7 6 5");
+                        return new int[0];
+                    }
+                    ret[i] = Convert.ToInt32(tab[i]);
+                }
+                return ret;
             }
-            return ret;
         }
+
 
         // convert int array to string and put it in a outputBox //
         void showOutput(int[] tab)
@@ -230,11 +271,11 @@ namespace WinFormsApp3
                 outputBox.Enabled = false;
                 randCountUD.Enabled = true;
                 genBut.Enabled = true;
-                if (randomArray.Length == 0 || randomArray == null)
+                if (randSrc.Count == 0)
                 {
                     bubSortBut.Enabled = false;
                     selSortBut.Enabled = false;
-                    //insertSortBut.Enabled = false;
+                    insertSortBut.Enabled = false;
                     //mrgSortBut.Enabled = false;
                     //qkSortBut.Enabled = false;
                 }
@@ -248,7 +289,7 @@ namespace WinFormsApp3
 
                 bubSortBut.Enabled = true;
                 selSortBut.Enabled = true;
-                //insertSortBut.Enabled = true;
+                insertSortBut.Enabled = true;
                 //mrgSortBut.Enabled = true;
                 //qkSortBut.Enabled = true;
             }
@@ -263,7 +304,4 @@ namespace WinFormsApp3
             else return ((int)time.TotalMinutes) + " minutes.";
         }
     }
-
-
-
 }

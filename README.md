@@ -44,6 +44,7 @@
 - [ ] automatically detect separator
 - [ ] read from file
 - [ ] write to file
+- [ ] progress bar
 
 ## Contributing
 

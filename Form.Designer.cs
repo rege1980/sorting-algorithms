@@ -95,7 +95,7 @@
             // 
             // mrgSortBut
             // 
-            mrgSortBut.Enabled = false;
+            mrgSortBut.Enabled = true;
             mrgSortBut.Location = new Point(413, 113);
             mrgSortBut.Name = "mrgSortBut";
             mrgSortBut.Size = new Size(87, 29);

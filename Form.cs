@@ -1,5 +1,7 @@
+using System.Diagnostics.Contracts;
 using System.Media;
 using System.Security.AccessControl;
+using System.Security.Cryptography;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WinFormsApp3
@@ -16,7 +18,7 @@ namespace WinFormsApp3
         {
             sorting(0);
         }
-        private int[] bubbleSort(int[] tab)                                 
+        private void bubbleSort(int[] tab)                                 
         {
             bool cbz = false;
             do
@@ -33,14 +35,14 @@ namespace WinFormsApp3
                     }
                 }
             } while (cbz);
-            return tab;
+            return;
         }
         // 1 - selection sort //
         private void selSortBut_Click(object sender, EventArgs e)       
         {
             sorting(1);
         }
-        int[] selectionSort(int[] tab)
+        private void selectionSort(int[] tab)
         {
             bool cbz;
             do
@@ -60,7 +62,7 @@ namespace WinFormsApp3
 
             }
             while (cbz);
-            return tab;
+            return;
         }
 
         // 2 - insertion sort //
@@ -68,7 +70,7 @@ namespace WinFormsApp3
         {
             sorting(2);
         }
-        int[] insertionSort(int[] tab)
+        private void insertionSort(int[] tab)
         {
             bool cbz;
             do
@@ -85,7 +87,7 @@ namespace WinFormsApp3
                     }
                 }
             } while (cbz);
-            return tab;
+            return;
         }
 
         // 3 - merge sort //
@@ -93,10 +95,63 @@ namespace WinFormsApp3
         {
             sorting(3);
         }
-        int[] mergeSort(int[] tab)
+        private void mergeSort(int[] tab)
         {
-            return tab;
+            if (tab.Length <= 1) return;
+
+            int mid = tab.Length / 2;
+
+            int[] left = Array.Empty<int>();
+            int[] right = Array.Empty<int>();
+
+            left = new int[mid];
+            right = new int[tab.Length - mid];
+
+            left = copyArray(tab, 0, mid);
+            right = copyArray(tab, mid, tab.Length);
+
+            mergeSort(left);
+            mergeSort(right);
+
+            merge(tab, left, right);
+
+            return;
         }
+        private void merge(int[] tab, int[] left, int[] right)
+        {
+            int l = 0;
+            int r = 0;
+            int i = 0;
+            while (l < left.Length && r < right.Length)
+            {
+                if (left[l] < right[r])
+                {
+                    tab[i] = left[l];
+                    l++;
+                    i++;
+                }
+                else
+                {
+                    tab[i] = right[r];
+                    r++;
+                    i++;
+                }
+            }
+            while (l < left.Length)
+            {
+                tab[i] = left[l];
+                l++;
+                i++;
+            }
+            while (r < right.Length)
+            {
+                tab[i] = right[r];
+                r++;
+                i++;
+            }
+            return;
+        }
+
 
         // 4 - quick sort //
         private void qkSortBut_Click(object sender, EventArgs e)
@@ -129,19 +184,19 @@ namespace WinFormsApp3
             switch (n)
             {
                 case 0:
-                    tab = bubbleSort(tab);
+                    bubbleSort(tab);
                     break;
                 case 1:
-                    tab = selectionSort(tab);
+                    selectionSort(tab);
                     break;
                 case 2:
-                    tab = insertionSort(tab);
+                    insertionSort(tab);
                     break;
                 case 3:
-                    //tab = mergeSort(tab);
+                    mergeSort(tab);
                     break;
                 case 4:
-                    //tab = quickSort(tab);
+                    quickSort(tab);
                     break;
                 default:
                     Array.Sort(tab);
@@ -163,7 +218,7 @@ namespace WinFormsApp3
         {
             randSrc.Clear();
 
-            Random rand = new Random();
+            Random rand = new();
 
             genBut.UseWaitCursor = true;
 
@@ -177,7 +232,7 @@ namespace WinFormsApp3
             bubSortBut.Enabled = true;
             selSortBut.Enabled = true;
             insertSortBut.Enabled = true;
-            //mrgSortBut.Enabled = true;
+            mrgSortBut.Enabled = true;
             //qkSortBut.Enabled = true;
             SystemSounds.Beep.Play();
             //MessageBox.Show("Done!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
@@ -204,7 +259,7 @@ namespace WinFormsApp3
                 {
                     SystemSounds.Beep.Play();
                     MessageBox.Show("Wrong formatting! Try: 9 8 7 6 5");
-                    return new int[0];
+                    return Array.Empty<int>();
                 }
 
                 String[] tab = str.Trim().Split(' ');
@@ -219,7 +274,7 @@ namespace WinFormsApp3
                     {
                         SystemSounds.Beep.Play();
                         MessageBox.Show("Something is wrong! Try: 9 8 7 6 5");
-                        return new int[0];
+                        return Array.Empty<int>();
                     }
                     ret[i] = Convert.ToInt32(tab[i]);
                 }
@@ -243,11 +298,10 @@ namespace WinFormsApp3
                 outputBox.Text = output;
             }
             else outputBox.Text = "";
-
         }
 
         // find smallest number in an array starting from index 'start' an return it //
-        int findSmallestIndex(int start, int[] tab)
+        private int findSmallestIndex(int start, int[] tab)
         {
             int temp = tab[start];
             int tempI = start;
@@ -276,7 +330,7 @@ namespace WinFormsApp3
                     bubSortBut.Enabled = false;
                     selSortBut.Enabled = false;
                     insertSortBut.Enabled = false;
-                    //mrgSortBut.Enabled = false;
+                    mrgSortBut.Enabled = false;
                     //qkSortBut.Enabled = false;
                 }
             }
@@ -290,18 +344,26 @@ namespace WinFormsApp3
                 bubSortBut.Enabled = true;
                 selSortBut.Enabled = true;
                 insertSortBut.Enabled = true;
-                //mrgSortBut.Enabled = true;
+                mrgSortBut.Enabled = true;
                 //qkSortBut.Enabled = true;
             }
         }
 
-        String formatTime(DateTime start, DateTime end)
+        private int[] copyArray(int[] src, int start, int stop)
+        {
+            int[] ret = new int[stop - start];
+            for(int i = start; i < stop; i++) 
+                ret[i - start] = src[i];
+            return ret;
+        }
+
+        private String formatTime(DateTime start, DateTime end)
         {
             TimeSpan time = end - start;
-            if (time.TotalMicroseconds < 2500) return ((int)time.TotalMicroseconds) + " microseconds.";
-            else if (time.TotalMilliseconds < 2500) return ((int)time.TotalMilliseconds) + " milliseconds.";
-            else if (time.TotalSeconds < 120) return ((int)time.TotalSeconds) + " seconds.";
-            else return ((int)time.TotalMinutes) + " minutes.";
+            if (time.TotalMicroseconds < 1000) return ((int)time.TotalMicroseconds) + " microseconds.";
+            else if (time.TotalMilliseconds < 1000) return ((int)time.Milliseconds) + "." + ((int)time.Microseconds) + " milliseconds.";
+            else if (time.TotalSeconds < 60) return ((int)time.Seconds) + "." + ((int)time.Milliseconds) + " seconds.";
+            else return ((int)time.Minutes) + " minutes and " + ((int)time.Seconds) + " seconds.";
         }
     }
 }

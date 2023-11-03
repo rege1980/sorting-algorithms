@@ -38,7 +38,7 @@
 ## Goals
 
 - [x] Insertion Sort
-- [ ] Merge Sort
+- [x] Merge Sort
 - [ ] Quick Sort
 - [ ] allow the user to choose whether the numbers should be sorted in a ascending or descending order
 - [ ] automatically detect separator

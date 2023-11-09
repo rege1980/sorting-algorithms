@@ -27,11 +27,11 @@
  <br />
  · Run `.exe` file (**Windows only**)
  <br />
- · Enter your numbers into the INPUT: field separated by a **blank space**.
+ · Enter your numbers separated by a **blank space**.
  <br />
  · Click the button corresponding to the algorithm the program should use to sort your numbers.
  <br />
- · The sorted numbers in ascending order will appear in the OUTPUT: field. 
+ · The sorted numbers in ascending order will appear in the bottom field. 
  <br />
  · The time needed to sort them will be displayed at the bottom.
  
@@ -39,12 +39,11 @@
 
 - [x] Insertion Sort
 - [x] Merge Sort
-- [ ] Quick Sort
+- [x] Quick Sort
 - [ ] allow the user to choose whether the numbers should be sorted in a ascending or descending order
 - [ ] automatically detect separator
 - [ ] read from file
 - [ ] write to file
-- [ ] progress bar
 
 ## Contributing
 

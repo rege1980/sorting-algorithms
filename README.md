@@ -13,7 +13,7 @@
     This program is a small tool for sorting numbers using popular sorting algorithms.
     <br />
     <p align="center">
-   A project created to learn C# and the .NET Framework
+   A project created to learn C# and WinForms
    <br />
    <br />
     <a href="https://github.com/rege1980/sorting-algorithms/issues">Report Bug</a>
@@ -23,11 +23,15 @@
 </div>
 
 ## Usage
- · Download latest [release](https://github.com/rege1980/sorting-algorithms/releases)
+ · Download latest [release](https://github.com/rege1980/sorting-algorithms/releases). Extract `.zip` file and run `.exe` file.
  <br />
- · Run `.exe` file (**Windows only**)
+ OR:
  <br />
- · Enter your numbers separated by a **blank space**.
+ · Download all source files and run `sortingAlgorithms.sln` using VS
+ <br />
+ THEN:
+ <br />
+  · Enter your numbers separated by a **blank space**.
  <br />
  · Click the button corresponding to the algorithm the program should use to sort your numbers.
  <br />
@@ -42,8 +46,9 @@
 - [x] Quick Sort
 - [ ] allow the user to choose whether the numbers should be sorted in a ascending or descending order
 - [ ] automatically detect separator
-- [ ] read from file
-- [ ] write to file
+- [x] progress bar
+- [ ] read from a file
+- [x] write to a file
 
 ## Contributing
 

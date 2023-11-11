@@ -27,7 +27,11 @@
  <br />
  OR:
  <br />
- · Download all source files and run `sortingAlgorithms.sln` using VS
+ · Download all [source](https://github.com/rege1980/sorting-algorithms/tree/b752b01f015dee5ce524793fddf93798eac5a499/source) files. Extract `.zip`.
+ <br />
+ · Open properties of `.resx` file. Under **General** tab tick **Unblock** box and **Apply**
+ <br />
+ · Run `.sln` file using VS (Make sure you have Windows Forms installed)
  <br />
  THEN:
  <br />
